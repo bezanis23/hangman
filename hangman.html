@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body style = "background-color: gold;">
+	<div class="container" style="font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; text-align: center;">
+      <div class="col-lg-12">
+        <h1>Goldmember Hangman</h1>
+      </div>
+    </div>
+    <div class="container" style="font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; text-align: center;">
+      <div class="col-lg-12">
+        <h3>Press Any Key To Start!</h3>
+      </div>
+    </div>
+    <div class="container" style="font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; text-align: center;">
+      	<div class="col-lg-12">
+       	 <img src="https://s-media-cache-ak0.pinimg.com/originals/f9/a1/3c/f9a13cc882e0f3a3222a4df863ccfef3.jpg" class="img-rounded" alt="GoldMember" width="304" height="236">
+		</div>
+    </div>
+    <div class="container" style="font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif; text-align: center;">
+    	<div id="game">
+			<script type="text/javascript">
+				var hangman = [
+				"antler",
+			 	"monkey",
+			 	"hamburger",
+			 	"drake",
+				];
+				var computerselect = hangman[Math.floor(Math.random() * hangman.length)];
+				var allowable = [
+				"a",
+				"b",
+				"c",
+				"d",
+				"e",
+				"f",
+				"g",
+				"h",
+				"i",
+				"j",
+				"k",
+				"l",
+				"m",
+				"n",
+				"o",
+				"p",
+				"q",
+				"r",
+				"s",
+				"t",
+				"u",
+				"v",
+				"w",
+				"x",
+				"y",
+				"z",
+				];
+				var wins = 0;
+		      	var losses = 0;
+		      	var lives = 8;
+		      	var correctGuesses = [];  
+		      	var guesses = [];
+
+
+				/*function allowableLetters(){
+
+					var userGuess = event.key;
+
+					if (userGuess.indexof(allowable) >= 0){
+						document.onkeyup();
+					}
+					else{
+						return false;
+					}
+				}*///trying to limit acceptable keystrokes to only letters
+
+				document.onkeyup = function(event) {
+
+
+					var userGuess = event.key;
+
+				
+					if (computerselect.indexOf(userGuess) >= 0) {
+						if (correctGuesses.indexOf(userGuess) === -1) {
+							correctGuesses.push(userGuess);
+							
+						}		
+					}
+					else{
+						lives--;
+						alert("NO!");
+						guesses.push(userGuess);
+
+					}
+					
+					gameover();
+					//winner();
+					updateUI();
+
+
+				};
+
+				function gameover(){
+					if (lives === 0){
+						alert("Game Over! Press Ok To Start Again!");
+						document.location.reload();
+					}
+				};
+
+				/*function winner(){
+					if (correctGuesses.includes(computerselect) = computerselect.length ){
+						wins++;
+					}
+					updateUI();
+
+				};*///I couldnt get the wins right
+				
+
+				function updateUI(){	
+						var html = "<p>Press Any Key To Start</p>" +
+			          	"<p>wins: " + wins + "</p>" +
+			          	"<p>losses: " + losses + "</p>" +
+			          	"<p>lives: " + lives + "</p>" +
+			          	"<p>word: " + correctGuesses + "</p>" +
+			          	 "<p> guesses:" + guesses + "</p>";
+
+			          document.querySelector("#game").innerHTML = html;
+		      };
+			</script>
+			</div>
+		</div>
+</body>
+</html>
